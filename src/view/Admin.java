@@ -43,8 +43,8 @@ public class Admin extends javax.swing.JFrame {
                     + varSearch.getText() + "%'"
                     + " OR nama LIKE '%" + varSearch.getText() + "%'" + " OR asal_sekolah LIKE '%" + varSearch.getText() + "%'";
             ResultSet rs = stmt.executeQuery(query);
-            int no_pendaftaran = 1;
             while(rs.next()){
+                int no_pendaftaran = rs.getInt("no_pendaftaran");
                 int nisn = rs.getInt("nisn");
                 long no_telepon = rs.getLong("no_telepon");
                 String nama = rs.getString("nama");
@@ -57,7 +57,6 @@ public class Admin extends javax.swing.JFrame {
                 int nilai_rata = rs.getInt("nilai_rata");
                 
                 dtm.addRow(new String[] {"P-" + no_pendaftaran, "00" + nisn + "", "0" + no_telepon, nama, agama, alamat, asal_sekolah, tanggal_lahir, tempat_lahir, jenis_kelamin, nilai_rata + ""});
-                no_pendaftaran++;
             }
         }
         catch(SQLException ex){
